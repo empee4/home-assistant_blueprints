@@ -27,15 +27,57 @@ blueprint:
           min: 0
           max: 20000
           unit_of_measurement: milliseconds
-    color_red:
-      name: Flashing color (RGB)
+    light_color_red:
+      name: Flashing color (Red)
       description: "Color used for flashing sequence"
-    color_green:
-      name: Flashing color (RGB)
+      default: 255
+      selector:
+        number:
+          min: 1.0
+          max: 255.0
+          mode: slider
+          step: 1.0
+    light_color_green:
+      name: Flashing color (Green)
       description: "Color used for flashing sequence"
-    color_blue:
-      name: Flashing color (RGB)
+      default: 255
+      selector:
+        number:
+          min: 1.0
+          max: 255.0
+          mode: slider
+          step: 1.0
+    light_color_blue:
+      name: Flashing color (Blue)
       description: "Color used for flashing sequence"
+      default: 255
+      selector:
+        number:
+          min: 1.0
+          max: 255.0
+          mode: slider
+          step: 1.0
+    light_brightness:
+      name: Brightness
+      description: Choose the brightness.
+      default: 255
+      selector:
+        number:
+          min: 1.0
+          max: 255.0
+          mode: slider
+          step: 1.0
+    light_transition:
+      name: Transition time [s]
+      description: Choose transition time.
+      default: 1.0
+      selector:
+      default: 0
+      selector:
+        number:
+          min: 0
+          max: 2000
+          unit_of_measurement: milliseconds
 mode: restart
 max_exceeded: silent
 
@@ -48,9 +90,11 @@ variables:
   activated: !input activated
   delay: !input delay
   target_lights: !input target_lights
-  color_red: !input color_red
-  color_green: !input color_green
-  color_blue: !input color_blue
+  light_color_red: !input light_color_red
+  light_color_green: !input light_color_green
+  light_color_blue: !input light_color_blue
+  light_brightness: !light_brightness
+  light_transition: !light_transition
 
 condition: []
 
@@ -74,9 +118,11 @@ action:
   - service: light.turn_on
     target: !input target_lights
     data:
-        rgb_color: ['{{ color_red }}',
-                    '{{ color_green }}',
-                    '{{ color_blue }}']
+        rgb_color: ['{{ light_color_red }}',
+                    '{{ light_color_green }}',
+                    '{{ light_color_blue }}']
+        brightness: !input light_brightness
+        transition: !light_transition
   - repeat:
       while:
       - condition: template
@@ -87,9 +133,11 @@ action:
       - service: light.toggle
         target: !input target_lights
         data:
-            rgb_color: ['{{ color_red }}',
-                        '{{ color_green }}',
-                        '{{ color_blue }}']
+            rgb_color: ['{{ light_color_red }}',
+                        '{{ light_color_green }}',
+                        '{{ light_color_blue }}']
+            brightness: !input light_brightness
+            transition: !light_transition
   - service: scene.turn_on
     data:
       entity_id: scene.all_lights_snapshot2
