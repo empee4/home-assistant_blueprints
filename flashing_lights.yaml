@@ -27,8 +27,8 @@ blueprint:
           min: 0
           max: 20000
           unit_of_measurement: milliseconds
-    color:
-        name: Color
+#    color:
+#        name: Color
 
 mode: restart
 max_exceeded: silent
@@ -42,7 +42,7 @@ variables:
   activated: !input activated
   delay: !input delay
   target_lights: !input target_lights
-  color: !input color
+#  color: !input color
 
 condition: []
 
@@ -56,7 +56,7 @@ action:
                  {{lights}}
   - service: light.turn_on
     target: !input target_lights
-    color_name: !input color
+    rgb_color: (219,20,61)
   - repeat:
       while:
       - condition: template
@@ -66,7 +66,7 @@ action:
           milliseconds: "{{ delay }}"
       - service: light.toggle
         target: !input target_lights
-        color_name: !input color
+        rgb_color: (219,20,61)
   - service: scene.turn_on
     data:
       entity_id: scene.all_lights_snapshot
