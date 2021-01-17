@@ -19,7 +19,7 @@ blueprint:
             entity:
               domain: light
     delay:
-      name: Interval
+      name: Interval [ms]
       description: "Flashing interval"
       default: 1000
       selector:
