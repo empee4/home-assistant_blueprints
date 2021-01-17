@@ -19,8 +19,8 @@ blueprint:
             entity:
               domain: light
     delay:
-      name: (OPTIONAL) Delay
-      description: "Delay flashing lights"
+      name: Interval
+      description: "Flashing interval"
       default: 1000
       selector:
         number:
@@ -33,7 +33,7 @@ blueprint:
       default: 255
       selector:
         number:
-          min: 1.0
+          min: 0
           max: 255.0
           mode: slider
           step: 1.0
@@ -43,7 +43,7 @@ blueprint:
       default: 255
       selector:
         number:
-          min: 1.0
+          min: 0
           max: 255.0
           mode: slider
           step: 1.0
@@ -53,7 +53,7 @@ blueprint:
       default: 255
       selector:
         number:
-          min: 1.0
+          min: 0
           max: 255.0
           mode: slider
           step: 1.0
@@ -68,7 +68,7 @@ blueprint:
           mode: slider
           step: 1.0
     light_transition:
-      name: Transition time [s]
+      name: Transition time [ms]
       description: Choose transition time.
       default: 0
       selector:
