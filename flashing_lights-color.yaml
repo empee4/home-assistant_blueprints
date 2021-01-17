@@ -70,8 +70,6 @@ blueprint:
     light_transition:
       name: Transition time [s]
       description: Choose transition time.
-      default: 1.0
-      selector:
       default: 0
       selector:
         number:
