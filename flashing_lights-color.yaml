@@ -58,9 +58,9 @@ action:
   - service: light.turn_on
     target: !input target_lights
     data:
-        rgb_color: !input ['{{ (range(0, 255)|random) }}',
-                           '{{ (range(0, 255)|random) }}',
-                           '{{ (range(0, 255)|random) }}']
+        rgb_color: ['{{ (range(0, 255)|random) }}',
+                    '{{ (range(0, 255)|random) }}',
+                    '{{ (range(0, 255)|random) }}']
   - repeat:
       while:
       - condition: template
