@@ -120,7 +120,7 @@ action:
                     '{{ light_color_green }}',
                     '{{ light_color_blue }}']
         brightness: !input light_brightness
-        transition: !light_transition
+        transition: !input light_transition
   - repeat:
       while:
       - condition: template
@@ -135,7 +135,7 @@ action:
                         '{{ light_color_green }}',
                         '{{ light_color_blue }}']
             brightness: !input light_brightness
-            transition: !light_transition
+            transition: !input light_transition
   - service: scene.turn_on
     data:
       entity_id: scene.all_lights_snapshot2
