@@ -57,7 +57,16 @@ condition: []
 action:
   - service: scene.create
     data:
-        scene_id: all_lights_snapshot
+        scene_id: all_lights_snapshot1
+        snapshot_entities: >
+               {% set lights = states.light
+                 | map(attribute='entity_id') | join(',') %}
+                 {{lights}}
+  - service: light.turn_on
+    target: !input target_lights
+  - service: scene.create
+    data:
+        scene_id: all_lights_snapshot2
         snapshot_entities: >
                {% set lights = states.light
                  | map(attribute='entity_id') | join(',') %}
@@ -83,4 +92,7 @@ action:
                         '{{ color_blue }}']
   - service: scene.turn_on
     data:
-      entity_id: scene.all_lights_snapshot
+      entity_id: scene.all_lights_snapshot2
+  - service: scene.turn_on
+    data:
+      entity_id: scene.all_lights_snapshot1
