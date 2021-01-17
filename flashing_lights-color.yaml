@@ -58,7 +58,7 @@ action:
   - service: light.turn_on
     target: !input target_lights
     data:
-        rgb_color: [219,20,61]
+        rgb_color: !input color
   - repeat:
       while:
       - condition: template
@@ -69,7 +69,7 @@ action:
       - service: light.toggle
         target: !input target_lights
         data:
-            rgb_color: [219,20,61]
+            rgb_color: !input color
   - service: scene.turn_on
     data:
       entity_id: scene.all_lights_snapshot
