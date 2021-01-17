@@ -55,8 +55,10 @@ action:
                  | map(attribute='entity_id') | join(',') %}
                  {{lights}}
   - service: light.turn_on
+    data:
+        rgb_color: (219,20,61)
     target: !input target_lights
-    rgb_color: (219,20,61)
+    
   - repeat:
       while:
       - condition: template
@@ -65,8 +67,9 @@ action:
       - delay: 
           milliseconds: "{{ delay }}"
       - service: light.toggle
+        data:
+            rgb_color: (219,20,61)
         target: !input target_lights
-        rgb_color: (219,20,61)
   - service: scene.turn_on
     data:
       entity_id: scene.all_lights_snapshot
