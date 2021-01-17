@@ -27,6 +27,11 @@ blueprint:
           min: 0
           max: 20000
           unit_of_measurement: milliseconds
+    color:
+        name: Color
+        Description: "Flashing color"
+        default: red
+        
 
 mode: restart
 max_exceeded: silent
@@ -40,6 +45,7 @@ variables:
   activated: !input activated
   delay: !input delay
   target_lights: !input target_lights
+  color: !color
 
 condition: []
 
@@ -53,6 +59,7 @@ action:
                  {{lights}}
   - service: light.turn_on
     target: !input target_lights
+    color_name: !color
   - repeat:
       while:
       - condition: template
@@ -61,7 +68,8 @@ action:
       - delay: 
           milliseconds: "{{ delay }}"
       - service: light.toggle
-        target: !input target_lights
+        target: !input target_light
+        color_name: !color
   - service: scene.turn_on
     data:
       entity_id: scene.all_lights_snapshot
