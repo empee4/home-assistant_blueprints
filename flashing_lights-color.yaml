@@ -91,8 +91,8 @@ variables:
   light_color_red: !input light_color_red
   light_color_green: !input light_color_green
   light_color_blue: !input light_color_blue
-  light_brightness: !light_brightness
-  light_transition: !light_transition
+  light_brightness: !input light_brightness
+  light_transition: !input light_transition
 
 condition: []
 
