@@ -1,5 +1,5 @@
 blueprint:
-  name: flashing lights red
+  name: flashing lights color
   description: >
      Flashing lights via on off and delay and finally restore the previous light states.
   domain: automation
