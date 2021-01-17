@@ -65,7 +65,7 @@ action:
       - delay: 
           milliseconds: "{{ delay }}"
       - service: light.toggle
-        target: !input target_light
+        target: !input target_lights
         color_name: !input color
   - service: scene.turn_on
     data:
