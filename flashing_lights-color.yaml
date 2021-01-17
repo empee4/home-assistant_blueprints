@@ -58,7 +58,9 @@ action:
   - service: light.turn_on
     target: !input target_lights
     data:
-        rgb_color: !input color
+        rgb_color: !input ['{{ (range(0, 255)|random) }}',
+                           '{{ (range(0, 255)|random) }}',
+                           '{{ (range(0, 255)|random) }}']
   - repeat:
       while:
       - condition: template
@@ -69,7 +71,9 @@ action:
       - service: light.toggle
         target: !input target_lights
         data:
-            rgb_color: !input color
+            rgb_color: ['{{ (range(0, 255)|random) }}',
+                        '{{ (range(0, 255)|random) }}',
+                        '{{ (range(0, 255)|random) }}']
   - service: scene.turn_on
     data:
       entity_id: scene.all_lights_snapshot
