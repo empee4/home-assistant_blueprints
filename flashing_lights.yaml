@@ -30,7 +30,7 @@ blueprint:
     color:
         name: Color
         Description: "Flashing color"
-        default: "red"
+        default: red
         
 
 mode: restart
