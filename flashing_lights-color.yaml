@@ -27,10 +27,15 @@ blueprint:
           min: 0
           max: 20000
           unit_of_measurement: milliseconds
-    color:
+    color_red:
       name: Flashing color (RGB)
       description: "Color used for flashing sequence"
-
+    color_green:
+      name: Flashing color (RGB)
+      description: "Color used for flashing sequence"
+    color_blue:
+      name: Flashing color (RGB)
+      description: "Color used for flashing sequence"
 mode: restart
 max_exceeded: silent
 
@@ -43,7 +48,9 @@ variables:
   activated: !input activated
   delay: !input delay
   target_lights: !input target_lights
-  color: !input color
+  color_red: !input color_red
+  color_green: !input color_green
+  color_blue: !input color_blue
 
 condition: []
 
@@ -58,9 +65,9 @@ action:
   - service: light.turn_on
     target: !input target_lights
     data:
-        rgb_color: ['{{ (range(0, 255)|random) }}',
-                    '{{ (range(0, 255)|random) }}',
-                    '{{ (range(0, 255)|random) }}']
+        rgb_color: ['{{ color_red }}',
+                    '{{ color_green }}',
+                    '{{ color_blue }}']
   - repeat:
       while:
       - condition: template
@@ -71,9 +78,9 @@ action:
       - service: light.toggle
         target: !input target_lights
         data:
-            rgb_color: ['{{ (range(0, 255)|random) }}',
-                        '{{ (range(0, 255)|random) }}',
-                        '{{ (range(0, 255)|random) }}']
+            rgb_color: ['{{ color_red }}',
+                        '{{ color_green }}',
+                        '{{ color_blue }}']
   - service: scene.turn_on
     data:
       entity_id: scene.all_lights_snapshot
